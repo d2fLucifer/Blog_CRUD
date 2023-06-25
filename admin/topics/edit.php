@@ -19,7 +19,10 @@ include_once ROOT_PATH . "/app/include/adminSidebars.php";
     <a href="create.php" class="btn btn-success">Adding Posts</a>
             <a href="index.php" class="btn btn-success">Manage Topic</a>
         <h1>Edit Topic</h1>
+        <?php
+    include ROOT_PATH . "/app/helpers/formErrors.php";
 
+                          ?>
         <form method='post' action='edit.php'>
         <input type="hidden" value="<?php echo $id; ?>" class="form-control" id="id" name="id">
 
