@@ -11,7 +11,7 @@ include_once ROOT_PATH . "/app/include/adminSidebars.php";
         
 <div style="margin-top :50px;" class="container">
 <a href="create.php" class="btn btn-success">Adding POST</a>
-            <a href="edit.php" class="btn btn-success">Edit POST</a>
+            <a href="index.php" class="btn btn-success">Manage POST</a>
         <h1> CREATE POST FORM</h1>
         <form>
   <div class="form-group">

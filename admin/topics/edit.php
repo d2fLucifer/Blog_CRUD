@@ -1,6 +1,8 @@
 <?php
 include "../../path.php";
 include_once ROOT_PATH . "/app/include/adminHeader.php";
+include_once ROOT_PATH . "/app/controllers/topics.php";
+
 ?>
 
 <?php
@@ -15,21 +17,23 @@ include_once ROOT_PATH . "/app/include/adminSidebars.php";
 <body>
     <div class="container">
     <a href="create.php" class="btn btn-success">Adding Posts</a>
-            <a href="edit.php" class="btn btn-success">Manage Topic</a>
+            <a href="index.php" class="btn btn-success">Manage Topic</a>
         <h1>Edit Topic</h1>
 
-        <form>
+        <form method='post' action='edit.php'>
+        <input type="hidden" value="<?php echo $id; ?>" class="form-control" id="id" name="id">
+
             <div class="form-group">
                 <label for="title">Title:</label>
-                <input type="text" class="form-control" id="title" name="title" value="Topic 1">
+                <input type="text"value="<?php echo $name; ?>" class="form-control" id="title" name="name" >
             </div>
 
             <div class="form-group">
                 <label for="description">Description:</label>
-                <textarea class="form-control" id="description" name="description" rows="4">This is the description of Topic 1.</textarea>
+                <textarea class="form-control" id="description" name="description" rows="4"><?php echo $description; ?></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Update Topic</button>
+            <button name="update-topic" type="submit" class="btn btn-primary">Update Topic</button>
         </form>
     </div>
 

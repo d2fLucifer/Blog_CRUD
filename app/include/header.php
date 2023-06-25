@@ -33,7 +33,7 @@ var_dump($_SESSION);
                                 <a class="dropdown-item" href="#">Settings</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?php echo BASE_URL . '/logout.php' ?>">Sign Out</a>
-                                <?php if ($_SESSION['role']==='Admin'): ?>
+                                <?php if ($_SESSION['role']!=='Author'): ?>
                
                                     <a class="dropdown-item" href="<?php echo BASE_URL . '/admin/dashboard.php' ?>">Dashboard</a>
             <?php  endif; ?>

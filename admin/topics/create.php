@@ -10,8 +10,7 @@ include_once ROOT_PATH . "/app/controllers/topics.php";
 
 ?>
     <div style="margin-top :50px;" class="container">
-    <h1>Topic Management</h1>
-    <a href="create.php" class="btn btn-success">Adding Topic</a>
+    <h1>CREATING TOPIC</h1>
             <a href="index.php" class="btn btn-success">Manage Topic</a>
     
         <form method="POST" action="create.php">

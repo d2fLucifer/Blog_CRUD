@@ -2,10 +2,12 @@
 include "path.php";
 include ROOT_PATH."/app/include/header.php" ;
 include ROOT_PATH."/app/include/message.php" ;
+include_once ROOT_PATH . "/app/controllers/topics.php";
+$topics = selectAll('topics');
 
 ?>
 
-  
+
     <section class="home" id="home">
       <div class="home-text container">
         <div class="home-title">D2F Team Blog</div>
@@ -14,11 +16,12 @@ include ROOT_PATH."/app/include/message.php" ;
     </section>
 
     <div class="post-filter container">
-      <span class="filter-item" data-filter="all">ALL</span>
-      <span class="filter-item" data-filter="Lifestyle">Lifestyle</span>
-      <span class="filter-item" data-filter="Food">Food</span>
-      <span class="filter-item" data-filter="Nature">Nature</span>
-      <span class="filter-item" data-filter="Photography">Photography</span>
+    <?php foreach($topics as $key =>$topic):?>
+    <div class="post-filter container">
+      <span class="filter-item" data-filter="all"><a class="filter-link" href="#"><?php echo $topic['name']; ?></a></span>
+      
+    </div>
+      <?php endforeach;?>
     </div>
     <?php 
 
@@ -48,17 +51,7 @@ include ROOT_PATH."/app/include/message.php" ;
     </section>
    
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var filterItems = document.querySelectorAll(".filter-item");
-        filterItems.forEach(function (item) {
-          item.addEventListener("click", function () {
-            var selectedFilter = item.getAttribute("data-filter");
-            var currentURL = new URL(window.location.href);
-            currentURL.searchParams.set("filter", selectedFilter);
-            window.location.href = currentURL.href;
-          });
-        });
-      });
+     
       $(document).ready(function() {
             $('.dropdown-toggle').on('click', function() {
                 $('.dropdown-menu').toggleClass('show');

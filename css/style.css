@@ -340,3 +340,13 @@ header.shadow .logo {
     #ffffff 100%
   );
 }
+.filter-item a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+.filter-item a:hover {
+  text-decoration: underline;
+  color: inherit;
+}
