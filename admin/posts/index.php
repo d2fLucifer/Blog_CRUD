@@ -42,8 +42,8 @@ include ROOT_PATH."/app/include/message.php" ;
                     <td><?php echo $post['topic_id']; ?></td>
                     <td>Jack</td>
                     <td>
-                        <a href="#" class="btn btn-primary edit">Edit</a>
-                        <a href="#" class="btn btn-danger delete">Delete</a>
+                    <a href="edit.php?id=<?php echo $post['id'] ?>" class="btn btn-primary edit">Edit</a>
+                        <a href="edit.php?delete_id=<?php echo $post['id'] ?>" class="btn btn-danger delete">Delete</a>
                         <?php if($post['published']): ?>
                         <a href="#" class="btn btn-info published">Published</a>
                         <?php else: ?>
