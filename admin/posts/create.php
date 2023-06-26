@@ -41,10 +41,12 @@ include_once ROOT_PATH . "/app/include/adminSidebars.php";
             </select>
         </div>
         <div class="form-group">
+            
             <label for="body">Body</label>
             <textarea class="form-control" id="body" name="body" rows="5" placeholder="Enter body"><?php echo $body; ?></textarea>
         </div>
         <div class="form-group form-check">
+            
             <input type="checkbox" class="form-check-input" id="publish" name="published">
             <label class="form-check-label" for="published">Publish</label>
         </div>
