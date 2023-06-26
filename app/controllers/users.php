@@ -31,6 +31,20 @@ if (isset($_POST['register-btn'])|| isset($_POST['create-admin'])) {
     if (count($errors) === 0) {
         unset($_POST['register-btn'], $_POST['repeat-password'],$_POST['create-admin']);
         
+        if (!empty($_FILES['image']['name'])) {
+            $image_name = time() . "_" . $_FILES['image']['name'];
+            $destination = ROOT_PATH . "/img/" . $image_name;
+            $result = move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+
+            if ($result) {
+                $_POST['image'] = $image_name;
+            } else {
+                $errors[] = "Failed to upload image";
+            }
+        } else {
+            $errors[] = "User image required";
+        }
+
         $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $_POST['password'] = $hashedPassword;
 if($_POST['role'])
