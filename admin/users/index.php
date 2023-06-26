@@ -13,10 +13,12 @@ include_once ROOT_PATH . "/app/include/adminSidebars.php";
 <div style="margin-top :50px;" class="container">
 <a href="create.php" class="btn btn-success">Adding user</a>
             <a href="edit.php" class="btn btn-success">Manage user</a>
-        <h1>User Form</h1>
+      
         
-        <h1> Edit Manage Users</h1>
-        
+        <h1>  Manage Users</h1>
+        <?php 
+include ROOT_PATH."/app/include/message.php" ;
+?>
         <table class="table">
             <thead>
                 <tr>

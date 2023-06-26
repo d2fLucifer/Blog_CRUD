@@ -138,6 +138,5 @@ function delete($table, $id)
 
 
 
-$id = delete('users', 9);
-dd($id);
+
 
