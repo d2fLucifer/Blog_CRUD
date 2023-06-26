@@ -21,6 +21,9 @@ include_once ROOT_PATH . "/app/include/adminSidebars.php";
         <a href="create.php" class="btn btn-success">Adding Posts</a>
         <a href="edit.php" class="btn btn-success">Edit Posts</a>
         <h2>MANAGE POSTS</h2>
+        <?php 
+include ROOT_PATH."/app/include/message.php" ;
+?>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -37,7 +40,6 @@ include_once ROOT_PATH . "/app/include/adminSidebars.php";
                     <td><?php echo $key + 1 ?></td>
                     <td><?php echo $post['title']; ?></td>
                     <td><?php echo $post['topic_id']; ?></td>
-
                     <td>Jack</td>
                     <td>
                         <a href="#" class="btn btn-primary edit">Edit</a>

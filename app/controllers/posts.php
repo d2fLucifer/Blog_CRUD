@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['add-post'])) {
             unset($_POST['add-post']);
             $_POST['user_id'] = 1;
-            $_POST['published'] = 1;
+            $_POST['published'] = isset($_POST['published']) ?1 :0;
 
             // Check if topic_id is set in $_POST
             $topic_id = isset($_POST['topic_id']) ? $_POST['topic_id'] : '';
@@ -33,7 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
            
 
             $post_id = create($table, $_POST);
-            
+            $_SESSION['message']= "Post created successfully ";
+            $_SESSION['type']= "success ";
+
             if ($post_id) {
                 header("Location: " . BASE_URL . "/admin/posts/index.php");
                 exit();
