@@ -28,6 +28,7 @@ include_once ROOT_PATH . "/app/include/adminSidebars.php";
                     <th>Title</th>
                     <th>Username</th>
                     <th>Action</th>
+                    <th>Topic</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,6 +36,8 @@ include_once ROOT_PATH . "/app/include/adminSidebars.php";
                 <tr>
                     <td><?php echo $key + 1 ?></td>
                     <td><?php echo $post['title']; ?></td>
+                    <td><?php echo $post['topic_id']; ?></td>
+
                     <td>Jack</td>
                     <td>
                         <a href="#" class="btn btn-primary edit">Edit</a>

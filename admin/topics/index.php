@@ -24,6 +24,7 @@ include ROOT_PATH."/app/include/message.php" ;
                 <tr>
                     <th>ID</th>
                     <th>Topic Name</th>
+                    
                     <th>Action</th>
                 </tr>
             </thead>
