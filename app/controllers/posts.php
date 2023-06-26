@@ -17,7 +17,8 @@ $body = '';
 $topic_id = '';
 $slug = '';
 $published = '';
-$image ='';
+$image = '';
+
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $post = selectOne($table, ['id' => $id]);
@@ -31,24 +32,41 @@ if (isset($_GET['id'])) {
         $image = $post['image'];
     }
 }
+
 if (isset($_GET['delete_id'])) {
-    if (isset($_GET['delete_id'])) {
-        $id = $_GET['delete_id'];
-        $result = delete($table, $id);
-    
-        if ($result) {
-            $_SESSION['message'] = "Post deleted successfully";
-            $_SESSION['type'] = "success";
-        } else {
-            $_SESSION['message'] = "Failed to delete the post.";
-            $_SESSION['type'] = "error";
-        }
-    
-        header("Location: " . BASE_URL . "/admin/posts/index.php");
-        exit();
+    $id = $_GET['delete_id'];
+    $result = delete($table, $id);
+
+    if ($result) {
+        $_SESSION['message'] = "Post deleted successfully";
+        $_SESSION['type'] = "success";
+    } else {
+        $_SESSION['message'] = "Failed to delete the post.";
+        $_SESSION['type'] = "error";
     }
-    
+
+    header("Location: " . BASE_URL . "/admin/posts/index.php");
+    exit();
 }
+
+if (isset($_GET['published']) && isset($_GET['p_id'])) {
+    $published = $_GET['published'];
+    $p_id = $_GET['p_id'];
+
+    $count = update($table, $p_id, ['published' => $published]);
+
+    if ($published == 0) {
+        $_SESSION['message'] = "Post published successfully";
+    } else {
+        $_SESSION['message'] = "Post unpublished successfully";
+    }
+
+    $_SESSION['type'] = "success";
+    header("Location: " . BASE_URL . "/admin/posts/index.php");
+    exit();
+}
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = validatePosts($_POST);
 
@@ -88,7 +106,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $errors[] = "Failed to create the post.";
             }
-        } 
+        }
+
         if (isset($_POST['update-post'])) {
             $id = $_POST['id'];
             unset($_POST['update-post'], $_POST['id']);
