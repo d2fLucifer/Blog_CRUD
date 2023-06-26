@@ -111,30 +111,47 @@ function create($table, $data)
 function update($table, $id, $data)
 {
     global $conn;
-    $sql = "UPDATE $table SET";
-    $placeholders = [];
-    $values = [];
+    $columns = implode(' = ?, ', array_keys($data)) . ' = ?';
+    $values = array_values($data);
+    $values[] = $id;
+    $sql = "UPDATE `$table` SET $columns WHERE id = ?";
 
-    foreach ($data as $key => $value) {
-        $placeholders[] = "$key = ?";
-        $values[] = $value;
+    $stmt = executeQuery($sql, $values);
+
+    if (!$stmt) {
+        echo "Error in executing UPDATE query: " . $conn->error;
+        return false;
     }
 
-    $sql .= " " . implode(", ", $placeholders);
-    $sql .= " WHERE id = ?";
-    $values[] = $id;
-    
-    $stmt = executeQuery($sql, $values);
     return $stmt->affected_rows;
 }
+
+
 function delete($table, $id)
 {
     global $conn;
-    $sql = "DELETE FROM $table WHERE id = ?";
-    
-    $stmt = executeQuery($sql, ['id'=> $id] );
-    return $stmt->affected_rows;
+
+    // Delete posts associated with the user
+    $postDeleteSql = "DELETE FROM posts WHERE user_id = ?";
+    $stmt = executeQuery($postDeleteSql, ['user_id' => $id]);
+
+    if (!$stmt) {
+        echo "Error in executing DELETE query: " . $conn->error;
+        return false;
+    }
+
+    // Delete the user
+    $userDeleteSql = "DELETE FROM $table WHERE id = ?";
+    $stmt = executeQuery($userDeleteSql, ['id' => $id]);
+
+    if (!$stmt) {
+        echo "Error in executing DELETE query: " . $conn->error;
+        return false;
+    }
+
+    return true;
 }
+
 
 
 

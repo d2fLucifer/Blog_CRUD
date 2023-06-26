@@ -21,38 +21,39 @@ include_once ROOT_PATH . "/app/include/adminSidebars.php";
     <div class="form-group">
     <label>Role:</label>
     <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="role" name="role" value="Admin">
+        <input class="form-check-input" type="checkbox" id="role" name="role" >
         <label class="form-check-label" for="role">
             Admin
         </label>
     </div>
   
 </div>
+<input value="<?php echo $id ?>" name="id"  type="hidden">
 
 
         <div class="form-group">
             <label for="username">Username:</label>
-            <input type="text" class="form-control" id="username" name="username" required>
+            <input value="<?php echo $username ?>" type="text" class="form-control" id="username" name="username" required>
         </div>
 
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+            <input  value="<?php echo $email ?>" type="email" class="form-control" id="email" name="email" required>
         </div>
 
         <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+            <input  value="<?php echo $password ?>" type="password" class="form-control" id="password" name="password" required>
         </div>
 
         <div class="form-group">
             <label for="repeat-password">Repeat Password:</label>
-            <input type="password" class="form-control" id="repeat-password" name="repeat-password" required>
+            <input value="<?php echo $password ?>" type="password" class="form-control" id="repeat-password" name="repeat-password" required>
         </div>
 
         <div class="form-group">
             <label for="image">Image:</label>
-            <input type="file" class="form-control-file" id="image" name="image">
+            <input  type="file" class="form-control-file" id="image" name="image">
         </div>
 
         <button name="create-admin" type="submit" class="btn btn-primary">Submit</button>
