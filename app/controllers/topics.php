@@ -5,8 +5,7 @@ if (!defined('ROOT_PATH')) {
     include "../../path.php";
 }
 
-include_once ROOT_PATH . "/app/include/adminHeader.php";
-include_once ROOT_PATH . "/app/include/adminSidebars.php";
+
 include_once ROOT_PATH . "/app/database/db.php";
 include_once ROOT_PATH . "/app/helpers/ValidateTopics.php";
 

@@ -1,10 +1,7 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
-}// After successful login
-// Set the user ID in the session
-
-var_dump($_SESSION);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
