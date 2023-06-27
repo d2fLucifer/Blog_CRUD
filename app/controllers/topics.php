@@ -1,6 +1,5 @@
 <?php
 ob_start();
-
 if (!defined('ROOT_PATH')) {
     include "../../path.php";
 }
@@ -27,8 +26,12 @@ if (isset($_POST['add-topic'])) {
         if ($topic_id) {
             $_SESSION['message'] = 'Topic created successfully';
             $_SESSION['type'] = 'success';
-            header('Location: ' . BASE_URL . '/admin/topics/index.php');
-            exit();
+            if (headers_sent()) {
+                die("Redirect failed. Please click on topics in Sidebar");
+            } else {
+                header('Location: ' . BASE_URL . '/admin/topics/index.php');
+                exit();
+            }
         } else {
             $_SESSION['message'] = 'Failed to create topic';
             $_SESSION['type'] = 'error';
@@ -80,4 +83,3 @@ if (isset($_GET['del_id'])) {
 }
 
 ob_end_flush();
-?>

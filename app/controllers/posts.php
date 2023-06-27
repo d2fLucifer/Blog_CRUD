@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (count($errors) === 0) {
         if (isset($_POST['add-post'])) {
             unset($_POST['add-post']);
-            $_POST['user_id'] = 1;
+            $_POST['user_id'] = $_SESSION['id'];
             $_POST['published'] = isset($_POST['published']) ? 1 : 0;
 
             // Check if topic_id is set in $_POST
