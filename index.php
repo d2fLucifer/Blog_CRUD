@@ -27,9 +27,10 @@ $posts = getPublishedPost();
   <?php endforeach; ?>
 </div>
 
-<?php include ROOT_PATH . "/app/include/message.php"; ?>
 
 <section class="post container">
+<?php include ROOT_PATH . "/app/include/message.php"; ?>
+
   <?php if (!empty($posts)) : ?>
     <?php foreach ($posts as $key => $post) : ?>
       <div class="post-box">
@@ -37,7 +38,7 @@ $posts = getPublishedPost();
         <a href="single_post.php?id=<?php echo $post['id']; ?>" class="post-title">
           <?php echo $post['title']; ?>
         </a>
-        <span class="post-date"><?php echo date('F j, Y', strtotime($post['posted_time'])); ?></span>
+        <span class="post-date"><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>
         <p class="post-description">
           <?php echo $post['body']; ?>
         </p>

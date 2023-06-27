@@ -2,10 +2,8 @@
 include "path.php";
 include_once ROOT_PATH . "/app/controllers/posts.php";
 
-// Get the post details
-$post = selectOne('posts', ['id' => $_GET['id']]);
 
-// Increase the view count by 1
+$post = selectOne('posts', ['id' => $_GET['id']]);
 $updateData = ['views' => $post['views'] + 1];
 update('posts', $_GET['id'], $updateData);
 
