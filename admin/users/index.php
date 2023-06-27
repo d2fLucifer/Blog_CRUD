@@ -3,6 +3,7 @@
 include "../../path.php";
 include_once ROOT_PATH . "/app/include/adminHeader.php";
 include_once ROOT_PATH . "/app/controllers/users.php";
+adminOnly();
 
 ?>
 

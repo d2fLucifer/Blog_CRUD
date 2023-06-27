@@ -1,6 +1,7 @@
 <?php
 include ROOT_PATH . "/app/database/db.php";
 include ROOT_PATH . "/app/helpers/ValidateUsers.php";
+require_once ROOT_PATH . "/app/helpers/middleware.php";
 
 $errors = array();
 $username = '';
@@ -94,6 +95,8 @@ if (isset($_POST['login-btn'])) {
 }
 
 if (isset($_GET['delete_id'])) {
+    adminOnly();
+
     $count = delete($table, $_GET['delete_id']);
     $_SESSION['message'] = 'Admin user deleted successfully';
     $_SESSION['type'] = 'success';

@@ -6,6 +6,7 @@ if (!defined('ROOT_PATH')) {
 
 require_once ROOT_PATH . "/app/database/db.php";
 require_once ROOT_PATH . "/app/helpers/ValidatePosts.php";
+require_once ROOT_PATH . "/app/helpers/middleware.php";
 
 $table = 'posts';
 $errors = array();
@@ -34,6 +35,8 @@ if (isset($_GET['id'])) {
 }
 
 if (isset($_GET['delete_id'])) {
+    adminOnly();
+
     $id = $_GET['delete_id'];
     $result = delete($table, $id);
 
@@ -42,7 +45,7 @@ if (isset($_GET['delete_id'])) {
         $_SESSION['type'] = "success";
     } else {
         $_SESSION['message'] = "Failed to delete the post.";
-        $_SESSION['type'] = "error";
+        $_SESSION['type'] = "danger";
     }
 
     header("Location: " . BASE_URL . "/admin/posts/index.php");
@@ -95,6 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (count($errors) === 0) {
         if (isset($_POST['add-post'])) {
+            adminOnly();
+
             unset($_POST['add-post']);
             $_POST['user_id'] = $_SESSION['id'];
             $_POST['published'] = isset($_POST['published']) ? 1 : 0;
@@ -117,6 +122,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if (isset($_POST['update-post'])) {
+            adminOnly();
+
             $id = $_POST['id'];
             unset($_POST['update-post'], $_POST['id']);
             $_POST['user_id'] = 1;

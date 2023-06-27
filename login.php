@@ -1,10 +1,11 @@
 <?php 
 include "path.php";
 include ROOT_PATH . "/app/controllers/users.php";
+require_once ROOT_PATH . "/app/helpers/middleware.php";
 
 include ROOT_PATH."/app/include/header.php" ;
 include ROOT_PATH . "/app/helpers/formErrors.php";
-
+guestOnly();
 ?>
 <style>
   header {

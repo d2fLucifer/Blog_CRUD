@@ -1,5 +1,7 @@
 
 <?php
+adminOnly();
+
 include "../../path.php";
 include_once ROOT_PATH . "/app/include/adminHeader.php";
 ?>

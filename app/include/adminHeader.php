@@ -2,7 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }// After successful login
-// Set the user ID in the session
+require_once ROOT_PATH . "/app/helpers/middleware.php";
 ?>
 <!DOCTYPE html>
 <html>

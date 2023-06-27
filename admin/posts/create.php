@@ -4,6 +4,7 @@ include_once ROOT_PATH . "/app/include/adminHeader.php";
 include_once ROOT_PATH . "/app/controllers/posts.php";
 include_once ROOT_PATH . "/app/helpers/formErrors.php";
 include_once ROOT_PATH . "/app/include/adminSidebars.php";
+adminOnly();
 ?>
 
 <div style="margin-top: 50px;" class="container">
