@@ -69,7 +69,6 @@ if (isset($_GET['published']) && isset($_GET['p_id'])) {
     exit();
 }
 
-asfasfasasf
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = validatePosts($_POST);
 

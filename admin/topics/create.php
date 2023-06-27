@@ -1,12 +1,14 @@
 
 <?php
-adminOnly();
 
 include "../../path.php";
 include_once ROOT_PATH . "/app/include/adminHeader.php";
 ?>
 
 <?php
+require_once ROOT_PATH . "/app/helpers/middleware.php";
+adminOnly();
+
 include_once ROOT_PATH . "/app/include/adminSidebars.php";
 include_once ROOT_PATH . "/app/controllers/topics.php";
 

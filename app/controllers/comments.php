@@ -9,12 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = validateComments($_POST);
 
     if (count($errors) === 0) {
-        // Process the submitted form data
         $post_id = $_POST['post_id'];
         $user_id = $_POST['user_id'];
         $body = $_POST['body'];
 
-        // Save the comment to the database
         $commentData = [
             'post_id' => $post_id,
             'user_id' => $user_id,

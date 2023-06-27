@@ -22,7 +22,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="<?php echo BASE_URL . '/img/user2_image.jpg' ?>" alt="User Profile Picture" class="rounded-circle" width="30" height="30">
+                            
                                 <?php echo $_SESSION['username'] ?>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -40,8 +40,11 @@ if (session_status() === PHP_SESSION_NONE) {
                     </ul>
                 </nav>
             <?php else:   ?>
-                <a href="<?php echo BASE_URL . '/login.php' ?>" class="login">Login</a>
-                <a href="<?php echo BASE_URL . '/register.php' ?>" class="login">Register</a>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+  
+                    <a style="display: inline-block; margin-right :5px; " href="<?php echo BASE_URL . '/login.php' ?>" class="login">Login</a>
+                    <a style="display: inline-block; margin-right :5px; " href="<?php echo BASE_URL . '/register.php' ?>" class="login">Register</a>
+</div>
             <?php endif; ?>
         </div>
     </header>
