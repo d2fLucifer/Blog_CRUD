@@ -1,10 +1,16 @@
 <?php
-include "path.php";
-include ROOT_PATH . "/app/include/header.php";
-include ROOT_PATH . "/app/include/message.php";
- include_once ROOT_PATH . "/app/controllers/topics.php";
+include_once "path.php";
+include_once ROOT_PATH . "/app/include/header.php";
+include_once ROOT_PATH . "/app/include/message.php";
+include_once ROOT_PATH . "/app/controllers/topics.php";
+include_once ROOT_PATH . "/app/controllers/users.php";
+
 $topics = selectAll('topics');
+$posts = getPublishedPost();
 ?>
+
+<!-- Rest of your code -->
+              
 
 <section class="home" id="home">
   <div class="home-text container">
@@ -14,7 +20,7 @@ $topics = selectAll('topics');
 </section>
 
 <div class="post-filter container">
-<?php foreach ($topics as $key => $topic) : ?> 
+  <?php foreach ($topics as $key => $topic) : ?>
     <span class="filter-item" data-filter="all">
       <a class="filter-link" href="#"><?php echo $topic['name']; ?></a>
     </span>
@@ -24,23 +30,38 @@ $topics = selectAll('topics');
 <?php include ROOT_PATH . "/app/include/message.php"; ?>
 
 <section class="post container">
-  <div class="post-box">
-    <img src="./img/image79.webp" alt="" class="post-img" />
-    <h2 class="category"></h2>
-    <a href="views/single_post.php" class="post-title">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore sapiente veniam aperiam? Deleniti porro alias eos iure error veritatis excepturi?
-    </a>
-    <span class="post-date"></span>
-    <p class="post-description">
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel corporis incidunt rem illo quo assumenda, ea temporibus sapiente. Voluptate, maiores?
-    </p>
-    <div class="profile">
-      <img src="img/user1_image.jpg" class="profile-img" alt="" />
-      <span class="profile-name"></span>
-    </div>
-  </div>
+  <?php if (!empty($posts)) : ?>
+    <?php foreach ($posts as $key => $post) : ?>
+      <div class="post-box">
+        <img src="<?php echo BASE_URL . '/img/' . $post['image'] ?>" alt="" class="post-img" />
+        <a href="single_post.php?id=<?php echo $post['id']; ?>" class="post-title">
+          <?php echo $post['title']; ?>
+        </a>
+        <span class="post-date"><?php echo date('F j, Y', strtotime($post['posted_time'])); ?></span>
+        <p class="post-description">
+          <?php echo $post['body']; ?>
+        </p>
+        <div class="profile">
+          <?php
+          $user = selectOne('users', ['id' => $post['user_id']]);
+          if ($user && file_exists(ROOT_PATH . '/img/' . $user['image'])) {
+            ?>
+            <img src="<?php echo BASE_URL . '/img/' . $user['image']; ?>" class="profile-img" alt="" />
+            <span class="profile-name"><?php echo $user['username']; ?></span>
+          <?php } ?>
+        </div>
+        <div class="post-stats">
+          <span class="view-count"><?php echo $post['views']; ?> Views</span>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  <?php endif; ?>
 </section>
 
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(function() {
     $('.dropdown-toggle').on('click', function() {
@@ -49,4 +70,4 @@ $topics = selectAll('topics');
   });
 </script>
 
-<?php include "app/include/footer.php"; ?>
+<?php include ROOT_PATH . "/app/include/footer.php"; ?>
