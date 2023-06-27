@@ -10,8 +10,6 @@ if (!function_exists('dd')) {
     }
 }
 
-
-
 function executeQuery($sql, $data)
 {
     global $conn;
@@ -34,8 +32,6 @@ function executeQuery($sql, $data)
 
     return $stmt;
 }
-
-
 
 function selectAll($table, $conditions = [])
 {
@@ -83,26 +79,33 @@ function selectOne($table, $conditions)
     $post = $result->fetch_assoc();
     return $post;
 }
+
 function create($table, $data)
 {
     global $conn;
+
+    // Validate user_id exists in the users table
+    if ($table === 'posts' && isset($data['user_id'])) {
+        $user = selectOne('users', ['id' => $data['user_id']]);
+        if (!$user) {
+            echo "Error: Invalid user_id provided.";
+            return false;
+        }
+    }
+
     $sql = "INSERT INTO $table SET";
     $placeholders = [];
     $values = [];
-
     foreach ($data as $key => $value) {
         $placeholders[] = "`$key` = ?";
         $values[] = $value;
-    }
-
+    }   
     $sql .= " " . implode(", ", $placeholders);
     $stmt = executeQuery($sql, $values);
-
     if (!$stmt) {
-        echo "Error in executing INSERT query: " . $conn->error;
+        echo "Error in executing CREATE query: " . $conn->error;
         return false;
     }
-
     $id = $stmt->insert_id;
     return $id;
 }
@@ -125,7 +128,6 @@ function update($table, $id, $data)
 
     return $stmt->affected_rows;
 }
-
 
 function delete($table, $id)
 {
@@ -152,8 +154,6 @@ function delete($table, $id)
     return true;
 }
 
+// Additional validation functions go here
 
-
-
-
-
+?>

@@ -10,7 +10,8 @@ $passwordConf = '';
 $table = 'users';
 $id = '';
 $admin_users = selectAll($table);
-
+$role = '';
+$image='';
 function loginUser($user)
 {
     $_SESSION['id'] = $user['id'];
@@ -28,10 +29,10 @@ function loginUser($user)
     }
 }
 
-if (isset($_POST['register-btn'])|| isset($_POST['create-admin'])) {
+if (isset($_POST['register-btn']) || isset($_POST['create-admin'])) {
     $errors = validateUser($_POST);
     if (count($errors) === 0) {
-        unset($_POST['register-btn'], $_POST['repeat-password'],$_POST['create-admin']);
+        unset($_POST['register-btn'], $_POST['repeat-password'], $_POST['create-admin']);
 
         if (!empty($_FILES['image']['name'])) {
             $image_name = time() . "_" . $_FILES['image']['name'];
@@ -49,21 +50,25 @@ if (isset($_POST['register-btn'])|| isset($_POST['create-admin'])) {
 
         $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $_POST['password'] = $hashedPassword;
-if($_POST['role'])
-{
-    $_POST['role'] = "Admin";
-    $user_id = create($table, $_POST);
-$_SESSION['message'] = 'Admin user created successfully';
-$_SESSION['type']='success';
-header('location:' . BASE_URL . '/admin/users/index.php');
-exit() ;
-}
-else {
-    $_POST['role'] = 'Author';
-    $user_id = create($table, $_POST);
-    $user = SelectOne($table, ['id' => $user_id]);
-    loginUser($user);
-}
+
+        if (isset($_POST['role'])) {
+            $_POST['role'] = "Admin";
+            $user_id = create($table, $_POST);
+            $_SESSION['message'] = 'Admin user created successfully';
+            $_SESSION['type'] = 'success';
+            header('location:' . BASE_URL . '/admin/users/index.php');
+            exit();
+        } else {
+            $_POST['role'] = 'Author';
+          
+
+            $user_id = create($table, $_POST);
+            
+
+            $user = SelectOne($table, ['id' => $user_id]);
+          
+            loginUser($user);
+        }
     } else {
         $username = isset($_POST['username']) ? $_POST['username'] : '';
         $email = isset($_POST['email']) ? $_POST['email'] : '';
@@ -103,6 +108,7 @@ if (isset($_GET['id'])) {
     $role = $user['role'] === 'Admin' ? true : false;
     $username = $user['username'];
     $email = $user['email'];
+    $image = $user['image'];
 }
 
 if (isset($_POST['update-user'])) {

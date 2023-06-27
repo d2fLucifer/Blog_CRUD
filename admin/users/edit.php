@@ -1,8 +1,7 @@
 <?php
-include "../../path.php";
+include_once "../../path.php";
 include_once ROOT_PATH . "/app/include/adminHeader.php";
 include_once ROOT_PATH . "/app/controllers/users.php";
-
 ?>
 
 <?php
@@ -13,9 +12,7 @@ include_once ROOT_PATH . "/app/include/adminSidebars.php";
     <a href="create.php" class="btn btn-success">Add User</a>
     <a href="index.php" class="btn btn-success">Manage Users</a>
     <h1>EDIT User Form</h1>
-    <?php
-    include ROOT_PATH . "/app/helpers/formErrors.php";
-    ?>
+    <?php include_once ROOT_PATH . "/app/helpers/formErrors.php"; ?>
     <form method="POST" action="edit.php" enctype="multipart/form-data">
         <?php if (isset($role) && $role === true): ?>
             <div class="form-group">
@@ -60,13 +57,34 @@ include_once ROOT_PATH . "/app/include/adminSidebars.php";
         </div>
 
         <div class="form-group">
-            <label for="image">Image:</label>
-            <input type="file" class="form-control-file" id="image" name="image">
+            <label for="image">Image</label>
+            <input name="image" type="file" class="form-control-file" id="image" accept="image/*">
+            <div id="image-preview"></div>
         </div>
 
         <button name="update-user" type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>
+
+<script>
+    // Image preview
+    const imageInput = document.getElementById('image');
+    const imagePreview = document.getElementById('image-preview');
+
+    imageInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                const imageUrl = reader.result;
+                imagePreview.innerHTML = '<img src="' + imageUrl + '" alt="Image Preview" class="img-thumbnail">';
+            }
+            reader.readAsDataURL(file);
+        } else {
+            imagePreview.innerHTML = '';
+        }
+    });
+</script>
 
 <?php
 include_once ROOT_PATH . "/app/include/adminFooter.php";

@@ -73,16 +73,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_FILES['image']['name'])) {
         $image_name = time() . "_" . $_FILES['image']['name'];
         $destination = ROOT_PATH . "/img/" . $image_name;
-        $result = move_uploaded_file($_FILES['image']['tmp_name'], $destination);
-
-        if ($result) {
-            $_POST['image'] = $image_name;
+    
+        // Check if the uploaded file is a valid image
+        $image_info = getimagesize($_FILES['image']['tmp_name']);
+        if ($image_info === false) {
+            $errors[] = "Invalid image file";
         } else {
-            $errors[] = "Failed to upload image";
+            // Valid image file, move it to the destination
+            $result = move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+    
+            if ($result) {
+                $_POST['image'] = $image_name;
+            } else {
+                $errors[] = "Failed to upload image";
+            }
         }
     } else {
         $errors[] = "Post image required";
     }
+    
 
     if (count($errors) === 0) {
         if (isset($_POST['add-post'])) {
@@ -99,7 +108,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $post_id = create($table, $_POST);
             $_SESSION['message'] = "Post created successfully";
             $_SESSION['type'] = "success";
-
             if ($post_id) {
                 header("Location: " . BASE_URL . "/admin/posts/index.php");
                 exit();
