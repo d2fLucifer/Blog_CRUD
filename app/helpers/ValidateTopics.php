@@ -1,34 +1,20 @@
 <?php
-
-function validateTopic($user)
+function validateTopic($topics)
 {
-    
     $errors = array();
-    if(!empty($topic['name']))
-    {
-        array_push($errors,'name is required');
+    if (empty($topics['name'])) {
+        array_push($errors, 'Name is required');
     }
-    
-    $existingTopic =selectOne('topics',['name'=>$user['name']]);
-    if(isset($existingTopic))
-    {
-        array_push($errors,'Name already exits');
+
+    $existingTopic = selectOne('topics', ['name' => $topics['name']]);
+    if ($existingTopic) {
+        if (isset($topics['update-topic']) && $existingTopic['id'] != $topics['id']) {
+            array_push($errors, 'Topic with name already exists');
+        }
+        if (isset($topics['add-topic'])) {
+            array_push($errors, 'Topic with name already exists');
+        }
     }
     return $errors;
 }
-// function validateLogin($user)
-// {
-    
-//     $errors = array();
-//     if(empty($user['username']))
-//     {
-//         array_push($errors,'Username is required');
-//     }
-    
-//     if(empty($user['password']))
-//     {
-//         array_push($errors,'password is required');
-//     }
- 
-//     return $errors;
-// }
+?>
