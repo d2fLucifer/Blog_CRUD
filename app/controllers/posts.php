@@ -69,15 +69,16 @@ if (isset($_GET['published']) && isset($_GET['p_id'])) {
     exit();
 }
 
-
+asfasfasasf
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = validatePosts($_POST);
 
     if (!empty($_FILES['image']['name'])) {
         $image_name = time() . "_" . $_FILES['image']['name'];
+
         $destination = ROOT_PATH . "/img/" . $image_name;
     
-        // Check if the uploaded file is a valid image
+       
         $image_info = getimagesize($_FILES['image']['tmp_name']);
         if ($image_info === false) {
             $errors[] = "Invalid image file";
