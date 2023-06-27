@@ -11,12 +11,13 @@ $table = 'users';
 $id = '';
 $admin_users = selectAll($table);
 $role = '';
-$image='';
+$image = '';
+
 function loginUser($user)
 {
     $_SESSION['id'] = $user['id'];
     $_SESSION['username'] = $user['username'];
-    $_SESSION['role'] = 'Author';
+    $_SESSION['role'] = $user['role'];
     $_SESSION['message'] = 'You are now logged in.';
     $_SESSION['type'] = 'success';
 
@@ -60,13 +61,11 @@ if (isset($_POST['register-btn']) || isset($_POST['create-admin'])) {
             exit();
         } else {
             $_POST['role'] = 'Author';
-          
 
             $user_id = create($table, $_POST);
-            
 
-            $user = SelectOne($table, ['id' => $user_id]);
-          
+            $user = selectOne($table, ['id' => $user_id]);
+
             loginUser($user);
         }
     } else {
