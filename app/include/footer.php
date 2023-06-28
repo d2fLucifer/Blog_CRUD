@@ -4,6 +4,8 @@
     <a href=""><i class="bx bxl-facebook-circle"></i></a>
     <a href=""><i class="bx bxl-instagram"></i></a>
     <a href=""><i class="bx bxl-linkedin-square"></i></a>
+    <a href=""><i class="bx bxl-linkedin-square"></i></a>
+
   </div>
 </div>
 
