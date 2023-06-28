@@ -18,6 +18,9 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="nav container">
             <a href="<?php echo BASE_URL . '/index.php' ?>" class="logo"><span>D2</span>F</a>
             <?php if (isset($_SESSION['id'])):  ?>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+  <a  href="<?php echo BASE_URL . '/create_post.php' ?>" class="login"><i class='bx bx-plus-circle'></i> Create Post</a>
+</div>
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown">

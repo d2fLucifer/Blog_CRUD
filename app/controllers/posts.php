@@ -98,7 +98,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (count($errors) === 0) {
         if (isset($_POST['add-post'])) {
-            adminOnly();
 
             unset($_POST['add-post']);
             $_POST['user_id'] = $_SESSION['id'];
