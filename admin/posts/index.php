@@ -47,9 +47,9 @@ include ROOT_PATH."/app/include/message.php" ;
                     <a href="edit.php?id=<?php echo $post['id'] ?>" class="btn btn-primary edit">Edit</a>
                         <a href="edit.php?delete_id=<?php echo $post['id'] ?>" class="btn btn-danger delete">Delete</a>
                         <?php if($post['published']): ?>
-                            <a href="edit.php?published=0&p_id=<?php echo $post['id'] ?>" class="btn btn-info published">Published</a>
+                            <a href="edit.php?published=0&p_id=<?php echo $post['id'] ?>" class="btn btn-info published">Unpublished</a>
                             <?php else: ?>
-                            <a href="edit.php?published=1&p_id=<?php echo $post['id'] ?>" class="btn btn-info unpublished">Unpublished</a>
+                            <a href="edit.php?published=1&p_id=<?php echo $post['id'] ?>" class="btn btn-info unpublished">Published</a>
 
                         <?php endif; ?>
                     </td>
