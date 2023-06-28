@@ -23,9 +23,7 @@ adminOnly();
         <a href="create.php" class="btn btn-success">Adding Posts</a>
         <a href="edit.php" class="btn btn-success">Edit Posts</a>
         <h2>MANAGE POSTS</h2>
-        <?php 
-include ROOT_PATH."/app/include/message.php" ;
-?>
+        <?php include ROOT_PATH . "/app/include/message.php"; ?>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -44,13 +42,12 @@ include ROOT_PATH."/app/include/message.php" ;
                     <td><?php echo $post['topic_id']; ?></td>
                     <td>Jack</td>
                     <td>
-                    <a href="edit.php?id=<?php echo $post['id'] ?>" class="btn btn-primary edit">Edit</a>
+                        <a href="edit.php?id=<?php echo $post['id'] ?>" class="btn btn-primary edit">Edit</a>
                         <a href="edit.php?delete_id=<?php echo $post['id'] ?>" class="btn btn-danger delete">Delete</a>
                         <?php if($post['published']): ?>
                             <a href="edit.php?published=0&p_id=<?php echo $post['id'] ?>" class="btn btn-info published">Unpublished</a>
-                            <?php else: ?>
+                        <?php else: ?>
                             <a href="edit.php?published=1&p_id=<?php echo $post['id'] ?>" class="btn btn-info unpublished">Published</a>
-
                         <?php endif; ?>
                     </td>
                 </tr>

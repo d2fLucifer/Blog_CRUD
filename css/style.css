@@ -34,7 +34,7 @@ header {
   top: 0px;
   left: 0;
   width: 100%;
-  z-index: 200;
+  z-index: 21200;
 }
 .container {
   max-width: 1068px;
@@ -350,3 +350,21 @@ header.shadow .logo {
   text-decoration: underline;
   color: inherit;
 }
+
+
+.gradient-custom-2 {
+  /* fallback for old browsers */
+  background-color: #FBAB7E;
+background-image: linear-gradient(45deg, #FBAB7E 0%, #F7CE68 100%);
+
+  }
+  .post-btn {
+    background-color: #FAD961;
+background-image: linear-gradient(90deg, #FAD961 0%, #F76B1C 100%);
+padding: 10px 25px;
+display: inline-block;
+color :white;
+border-radius: 12px;
+cursor: pointer;
+border-color: none !important;
+  }

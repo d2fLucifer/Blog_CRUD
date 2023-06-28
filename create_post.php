@@ -8,12 +8,12 @@ usersOnly();
 ?>
 
 <div style="margin-top: 50px;" class="container">
-  
+
     <h1>Create Post Form</h1>
 
     <?php include ROOT_PATH . "/app/helpers/formErrors.php"; ?>
 
-    <form method="POST" action="create.php" enctype="multipart/form-data">
+    <form method="POST" action="create_post.php" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title">Title</label>
             <input value="<?php echo $title; ?>" name="title" type="text" class="form-control" id="title" placeholder="Enter title">
@@ -31,9 +31,9 @@ usersOnly();
             <label for="topic">Topic</label>
             <select name="topic_id" class="form-control" id="topic">
                 <?php foreach ($topics as $topic) : ?>
-                    <?php if (!empty($topic_id) && $topic_id === $topic['id']): ?>
+                    <?php if (!empty($topic_id) && $topic_id === $topic['id']) : ?>
                         <option selected value="<?php echo $topic['id']; ?>"><?php echo $topic['name']; ?></option>
-                    <?php else: ?>
+                    <?php else : ?>
                         <option value="<?php echo $topic['id']; ?>"><?php echo $topic['name']; ?></option>
                     <?php endif; ?>
                 <?php endforeach; ?>
@@ -47,7 +47,7 @@ usersOnly();
             <input type="checkbox" class="form-check-input" id="publish" name="published">
             <label class="form-check-label" for="published">Publish</label>
         </div>
-        <button name="add-post" type="submit" class="btn btn-primary">Submit</button>
+        <button name="add-post-users" type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 

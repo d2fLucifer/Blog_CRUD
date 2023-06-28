@@ -9,7 +9,7 @@ require_once ROOT_PATH . "/app/helpers/ValidatePosts.php";
 require_once ROOT_PATH . "/app/helpers/middleware.php";
 
 $table = 'posts';
-$errors = array();
+$errors = [];
 
 $topics = selectAll('topics');
 $posts = selectAll($table);
@@ -77,7 +77,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $destination = ROOT_PATH . "/img/" . $image_name;
     
-       
         $image_info = getimagesize($_FILES['image']['tmp_name']);
         if ($image_info === false) {
             $errors[] = "Invalid image file";
@@ -94,12 +93,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $errors[] = "Post image required";
     }
-    
 
     if (count($errors) === 0) {
-        if (isset($_POST['add-post'])) {
-
-            unset($_POST['add-post']);
+        if (isset($_POST['add-post']) || isset($_POST['add-post-users'])) {
+            $check = false;
+            if (isset($_POST['add-post-users'])) {
+                $check = true;
+            }
+            unset($_POST['add-post'], $_POST['add-post-users']);
             $_POST['user_id'] = $_SESSION['id'];
             $_POST['published'] = isset($_POST['published']) ? 1 : 0;
 
@@ -110,11 +111,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $selectedTopic = selectOne('topics', ['id' => $topic_id]);
 
             $post_id = create($table, $_POST);
-            $_SESSION['message'] = "Post created successfully";
-            $_SESSION['type'] = "success";
             if ($post_id) {
-                header("Location: " . BASE_URL . "/admin/posts/index.php");
-                exit();
+                $_SESSION['message'] = "Post created successfully";
+                $_SESSION['type'] = "success";
+                if ($check) {
+                    header("Location: " . BASE_URL . "/index.php");
+                    exit();
+                } else {
+                    header("Location: " . BASE_URL . "/admin/posts/index.php");
+                    exit();
+                }
             } else {
                 $errors[] = "Failed to create the post.";
             }
@@ -135,10 +141,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $selectedTopic = selectOne('topics', ['id' => $topic_id]);
 
             $post_id = update($table, $id, $_POST);
-            $_SESSION['message'] = "Post updated successfully";
-            $_SESSION['type'] = "success";
-
             if ($post_id) {
+                $_SESSION['message'] = "Post updated successfully";
+                $_SESSION['type'] = "success";
                 header("Location: " . BASE_URL . "/admin/posts/index.php");
                 exit();
             } else {

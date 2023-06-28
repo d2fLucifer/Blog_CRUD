@@ -34,7 +34,33 @@ if (!function_exists('executeQuery')) {
         return $stmt;
     }
 }
+// if (!function_exists('countRows')) {
+// function countRows($table, $condition = [])
+// {
+//     global $pdo;
 
+//     $sql = "SELECT COUNT(*) AS total FROM $table";
+//     $params = [];
+
+//     if (!empty($condition)) {
+//         $sql .= " WHERE ";
+//         $conditions = [];
+
+//         foreach ($condition as $column => $value) {
+//             $conditions[] = "$column = :$column";
+//             $params[":$column"] = $value;
+//         }
+
+//         $sql .= implode(" AND ", $conditions);
+//     }
+
+//     $stmt = $pdo->prepare($sql);
+//     $stmt->execute($params);
+//     $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+//     return $result['total'] ?? 0;
+// }
+// }
 if (!function_exists('selectAll')) {
     function selectAll($table, $conditions = [])
     {
