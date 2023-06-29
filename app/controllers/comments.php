@@ -8,7 +8,7 @@ include_once ROOT_PATH . "/app/helpers/validateComments.php";
 
 $table = "comments";
 
-// Handle form submission
+date_default_timezone_set("Asia/Ho_Chi_Minh");
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = validateComments($_POST);
 
@@ -20,13 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $commentData = [
                 'user_id' => $_POST['user_id'],
                 'post_id' => $_POST['post_id'],
-                'body' => $_POST['comment-body'], // Updated column name
+                'body' => $_POST['comment-body'], 
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ];
             $comment_id = create($table, $commentData);
             if ($comment_id) {
-                $_SESSION['message'] = "Comment posted successfully";
+                $_SESSION['message'] = "Commented successfully";
                 $_SESSION['type'] = "success";
                 header("Location: " . BASE_URL . "/single_post.php?id=" . $_POST['post_id']);
                 exit();
