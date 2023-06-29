@@ -368,3 +368,14 @@ border-radius: 12px;
 cursor: pointer;
 border-color: none !important;
   }
+  .link-grey { color: #aaa; } .link-grey:hover { color: #00913b; }
+  .comments {
+    width: 100%;
+  }
+  
+  .comments section {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
