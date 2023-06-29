@@ -5,8 +5,29 @@ include_once ROOT_PATH . "/app/controllers/posts.php";
 include_once ROOT_PATH . "/app/helpers/formErrors.php";
 include_once ROOT_PATH . "/app/include/adminSidebars.php";
 adminOnly();
-
 ?>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery library -->
+
+<script>
+    $(document).ready(function() {
+        $('#image').change(function() {
+            readURL(this);
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+            
+                reader.onload = function(e) {
+                    $('#image-preview').attr('src', e.target.result);
+                }
+            
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    });
+</script>
 
 <div style="margin-top: 50px;" class="container">
     <a href="create.php" class="btn btn-success">Add Post</a>
@@ -28,7 +49,7 @@ adminOnly();
         <div class="form-group">
             <label for="image">Image</label>
             <?php if (!empty($image)) : ?>
-                <img src="<?php echo BASE_URL . '/img/' . $image; ?>" alt="Post Image" class="img-fluid">
+                <img src="<?php echo BASE_URL . '/img/' . $image; ?>" alt="Post Image" class="img-fluid" id="image-preview">
             <?php endif; ?>
             <input name="image" type="file" class="form-control-file" id="image">
         </div>

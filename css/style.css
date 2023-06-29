@@ -390,3 +390,9 @@ button.btn.btn-outline-dark {
 .dropdown-menu.dropdown-menu-right.show {
   z-index: 900000;
 }
+.card-text{
+  display:-webkit-box;
+  -webkit-line-clamp: var(--line-clamp,2);
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
