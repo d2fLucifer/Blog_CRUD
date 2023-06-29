@@ -22,3 +22,10 @@
 <script src="js/main.js"></script>
 </body>
 </html>
+<script>
+    $(document).ready(function() {
+      $('.dropdown-toggle').on('click', function() {
+        $('.dropdown-menu').toggleClass('show');
+      });
+    });
+  </script>
