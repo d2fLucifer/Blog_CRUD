@@ -20,9 +20,55 @@ $slug = '';
 $published = '';
 $image = '';
 
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $post = selectOne($table, ['id' => $id]);
+
+    if ($post) {
+        $title = $post['title'];
+        $body = $post['body'];
+        $topic_id = $post['topic_id'];
+        $slug = $post['slug'];
+        $published = $post['published'];
+        $image = $post['image'];
+    }
+}
+
+if (isset($_GET['delete_id'])) {
+    adminOnly();
+
+    $id = $_GET['delete_id'];
+    $result = delete($table, $id);
+
+    if ($result) {
+        $_SESSION['message'] = "Post deleted successfully";
+        $_SESSION['type'] = "success";
+    } else {
+        $_SESSION['message'] = "Failed to delete the post.";
+        $_SESSION['type'] = "danger";
+    }
+
+    header("Location: " . BASE_URL . "/admin/posts/index.php");
+    exit();
+}
+
+if (isset($_GET['published']) && isset($_GET['p_id'])) {
+    $published = $_GET['published'];
+    $p_id = $_GET['p_id'];
+
+    $count = update($table, $p_id, ['published' => $published]);
 // Include necessary files and initialize variables
 
-// ...
+    if ($published == 0) {
+        $_SESSION['message'] = "Post published successfully";
+    } else {
+        $_SESSION['message'] = "Post unpublished successfully";
+    }
+
+    $_SESSION['type'] = "success";
+    header("Location: " . BASE_URL . "/admin/posts/index.php");
+    exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = validatePosts($_POST);

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-include ROOT_PATH."/app/include/header.php" ;
 
 <head>
 	<meta charset="utf-8">
