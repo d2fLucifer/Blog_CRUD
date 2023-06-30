@@ -4,7 +4,7 @@
   include_once ROOT_PATH . "/app/include/message.php";
   include_once ROOT_PATH . "/app/controllers/topics.php";
   include_once ROOT_PATH . "/app/controllers/users.php";
-
+  usersOnly(); // Restrict access to logged-in users
   $topics = selectAll('topics');
   $posts = getPublishedPost();
   $perPage = 6;
@@ -31,10 +31,10 @@
       </span>
     <?php endforeach; ?>
   </div>
+  <?php include ROOT_PATH . "/app/include/message.php"; ?>
 
   <section class="post container">
-    <?php include ROOT_PATH . "/app/include/message.php"; ?>
-
+    
     <?php if (!empty($posts)) : ?>
       <?php foreach ($posts as $key => $post) : ?>
         <div class="post-box">
@@ -53,15 +53,15 @@
               ?>
               <img src="<?php echo BASE_URL . '/img/' . $user['image']; ?>" class="profile-img" alt="" />
               <span class="profile-name"><?php echo $user['username']; ?></span>
-            <?php } ?>
+              <?php } ?>
+            </div>
+            <div class="post-stats">
+              <span class="view-count"><?php echo $post['views']; ?> Views</span>
+            </div>
           </div>
-          <div class="post-stats">
-            <span class="view-count"><?php echo $post['views']; ?> Views</span>
-          </div>
-        </div>
-      <?php endforeach; ?>
-    </section>
-    <?php endif; ?>
+          <?php endforeach; ?>
+        </section>
+        <?php endif; ?>
 
     <!-- Pagination links -->
     <div class="pagination">

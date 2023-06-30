@@ -24,7 +24,7 @@ guestOnly();
                 <div class="text-center">
                   <img src="https://th.bing.com/th/id/R.424de86db969a3f3232152d847645ac8?rik=y86nE1a5nnrxzQ&pid=ImgRaw&r=0"
                     style="width: 185px;" alt="logo">
-                  <h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
+                  <h4 class="mt-1 mb-5 pb-1">We are D2F Team</h4>
                 </div>
 
                 <form action="login.php" method ="post">

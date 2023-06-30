@@ -7,7 +7,6 @@ include_once ROOT_PATH . "/app/controllers/topics.php";
 
 <?php
 include_once ROOT_PATH . "/app/include/adminSidebars.php";
-adminOnly();
 
 ?>
 
