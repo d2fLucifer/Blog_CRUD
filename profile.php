@@ -3,16 +3,15 @@ include_once "path.php";
 include_once ROOT_PATH . "/app/include/header.php";
 include_once ROOT_PATH . "/app/controllers/users.php";
 
-$user = selectOne($table, ['id' => $_SESSION['id']]); // Fetch the user information from the session
+$user = selectOne($table, ['id' => $_SESSION['id']]); 
 
-// Count the number of user posts
 $userPostsCount = count(selectAll('posts', ['user_id' => $_SESSION['id']]));
 
-// Fetch the user's recent posts
-$userPosts = selectAll('posts', ['user_id' => $_SESSION['id']], 'created_at DESC'); // Fetch all posts
 
-$visiblePosts = array_slice($userPosts, 0, 1); // Display only the first post initially
-$remainingPosts = array_slice($userPosts, 1); // Store the remaining posts
+$userPosts = selectAll('posts', ['user_id' => $_SESSION['id']], 'created_at DESC'); 
+
+$visiblePosts = array_slice($userPosts, 0, 1); 
+$remainingPosts = array_slice($userPosts, 1); 
 
 ?>
 
@@ -39,7 +38,7 @@ $remainingPosts = array_slice($userPosts, 1); // Store the remaining posts
               </div>
               <div>
                 <p class="mb-1 h5"><?php echo $userPostsCount; ?></p>
-                <p class="small text-muted mb-0">Photos</p>
+                <p class="small text-muted mb-0">Posts</p>
               </div>
               <div class="px-3">
                 <p class="mb-1 h5">1026</p>
@@ -66,9 +65,9 @@ $remainingPosts = array_slice($userPosts, 1); // Store the remaining posts
             </div>
             <div class="row g-2" id="postsContainer">
               <?php foreach ($visiblePosts as $post): ?>
-                <div class="col">
+                <div class="col mb-2">
                   <div class="card" style="width: 18rem;">
-                    <img src="<?php echo BASE_URL . '/img/' . $post['image']; ?>" class="card-img-top" alt="...">
+                    <img src="<?php echo BASE_URL . '/img/' . $post['image']; ?>" class="card-img-top" alt="post image">
                     <div class="card-body">
                       <h5 class="card-title"><?php echo $post['title']; ?></h5>
                       <p class="card-text"><?php echo $post['body']; ?></p>
@@ -76,6 +75,7 @@ $remainingPosts = array_slice($userPosts, 1); // Store the remaining posts
                     </div>
                   </div>
                 </div>
+                
                 
               <?php endforeach; ?>
             </div>
@@ -107,7 +107,7 @@ $remainingPosts = array_slice($userPosts, 1); // Store the remaining posts
       card.classList.add('col');
       card.innerHTML = `
         <div class="card" style="width: 18rem;">
-          <img src="<?php echo BASE_URL; ?>/img/${post['image']}" class="card-img-top" alt="...">
+          <img src="<?php echo BASE_URL; ?>/img/${post['image']}" class="card-img-top" alt="post image">
           <div class="card-body">
             <h5 class="card-title">${post['title']}</h5>
             <p class="card-text">${post['body']}</p>

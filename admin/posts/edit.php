@@ -4,7 +4,6 @@ include_once ROOT_PATH . "/app/include/adminHeader.php";
 include_once ROOT_PATH . "/app/controllers/posts.php";
 include_once ROOT_PATH . "/app/helpers/formErrors.php";
 include_once ROOT_PATH . "/app/include/adminSidebars.php";
-adminOnly();
 ?>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery library -->

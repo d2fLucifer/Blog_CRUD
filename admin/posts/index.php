@@ -16,8 +16,6 @@ if (session_status() === PHP_SESSION_NONE) {
 <body>
 <?php
 include_once ROOT_PATH . "/app/include/adminSidebars.php";
-adminOnly();
-
 ?>
     <div style="margin-top: 50px;" class="container">
         <a href="create.php" class="btn btn-success">Adding Posts</a>
