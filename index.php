@@ -1,4 +1,6 @@
-  <?php
+<?php
+include_once __DIR__ . '/router.php';
+
   include_once "path.php";
   include_once ROOT_PATH . "/app/include/header.php";
   include_once ROOT_PATH . "/app/include/message.php";
@@ -31,11 +33,11 @@
       </span>
     <?php endforeach; ?>
   </div>
-  
+  <?php include ROOT_PATH . "/app/include/message.php"; ?>
+
   <section class="post container">
     
     <?php if (!empty($posts)) : ?>
-      <?php include ROOT_PATH . "/app/include/message.php"; ?>
       <?php foreach ($posts as $key => $post) : ?>
         <div class="post-box">
           <img src="<?php echo BASE_URL . '/img/' . $post['image'] ?>" alt="" class="post-img" />

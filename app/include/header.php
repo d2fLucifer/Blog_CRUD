@@ -2,6 +2,8 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+// include_once ROOT_PATH . '.../.../../router.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
