@@ -7,6 +7,12 @@
   scroll-padding-top: 2rem;
   box-sizing: border-box;
 }
+a {
+  color: #343a40;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
 ::selection {
   color: var(--bg-color);
   background: var(--second-color);

@@ -164,8 +164,8 @@ if (!function_exists('update')) {
     }
 }
 
-if (!function_exists('delete')) {
-    function delete($table, $id)
+if (!function_exists('deleteFromDatabase')) {
+    function deleteFromDatabase($table, $id)
     {
         global $conn;
 

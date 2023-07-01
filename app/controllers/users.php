@@ -97,7 +97,7 @@ if (isset($_POST['login-btn'])) {
 if (isset($_GET['delete_id'])) {
     adminOnly();
 
-    $count = delete($table, $_GET['delete_id']);
+    $count = deleteFromDatabase($table, $_GET['delete_id']);
     $_SESSION['message'] = 'Admin user deleted successfully';
     $_SESSION['type'] = 'success';
     header('location:' . BASE_URL . '/admin/users/index.php');
@@ -113,11 +113,14 @@ if (isset($_GET['id'])) {
     $image = $user['image'];
 }
 
-if (isset($_POST['update-user'])) {
+if (isset($_POST['update-user'])||isset($_POST['update-user-forUsers'])) {
     $errors = validateUser($_POST);
+
     if (count($errors) === 0) {
         $id = $_POST['id'];
-        unset($_POST['repeat-password'], $_POST['update-user'], $_POST['id']);
+        $check =isset($_POST['update-user-forUsers']);
+        
+        unset($_POST['repeat-password'], $_POST['update-user'], $_POST['id'],$_POST['update-user-forUsers']);
 
         if (!empty($_FILES['image']['name'])) {
             $image_name = time() . "_" . $_FILES['image']['name'];
@@ -141,8 +144,16 @@ if (isset($_POST['update-user'])) {
         $count = update($table, $id, $_POST);
         $_SESSION['message'] = 'Admin user updated successfully';
         $_SESSION['type'] = 'success';
-        header('location:' . BASE_URL . '/admin/users/index.php');
-        exit();
+        if($check)
+        {
+            header('location:' . BASE_URL . '/profile.php');
+            exit();
+        }
+        else{
+
+            header('location:' . BASE_URL . '/admin/users/index.php');
+            exit();
+        }
     } else {
         $username = isset($_POST['username']) ? $_POST['username'] : '';
         $email = isset($_POST['email']) ? $_POST['email'] : '';
