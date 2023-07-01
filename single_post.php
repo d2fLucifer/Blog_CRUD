@@ -33,6 +33,15 @@ include ROOT_PATH . "/app/include/header.php";
     <h2 class="subheading"><?php echo $post['slug']; ?></h2>
     <p class="post-text"><?php echo $post['body']; ?></p>
 </section>
+<div class="container-fluid text-center">
+<?php
+
+if (isset($_SESSION['id']) && $_SESSION['id'] == $post['user_id']) {
+    echo '<a href="user/posts/edit_post.php?id=' . $post['id'] . '" class="btn btn-success"><i class="bx bx-edit"></i> Edit Post</a>';
+}
+?>
+
+</div>
 <section class="comments post-container">
     <h3>Comments</h3>
     <section style="background-color: #fff;">
@@ -82,7 +91,6 @@ include ROOT_PATH . "/app/include/header.php";
                 .catch(error => console.log(error));
         }
 
-        // Call the function to load comments immediately
         loadComments();
     </script>
 

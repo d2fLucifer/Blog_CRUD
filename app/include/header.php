@@ -2,7 +2,6 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-// include_once ROOT_PATH . '.../.../../router.php';
 
 ?>
 <!DOCTYPE html>
@@ -13,7 +12,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <title>D2F</title>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="<?php echo BASE_URL . '/css/style.css' ?>" rel="stylesheet">
 </head>
 <body>
     <header>

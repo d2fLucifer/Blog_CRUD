@@ -33,7 +33,7 @@ $remainingPosts = array_slice($userPosts, 1);
             <div class="d-flex justify-content-end text-center py-1">
               <div style="left:10px; position:absolute;">
                 <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark" style="z-index: 1;">
-                  Edit profile
+              <a href="user/users/edit_profile.php?id=<?php echo $_SESSION['id']; ?>"> Edit Profile</a>
                 </button>
               </div>
               <div>

@@ -82,7 +82,7 @@ if (isset($_GET['del_id'])) {
     adminOnly();
 
     $id = $_GET['del_id'];
-    $count = delete($table, $id);
+    $count = deleteFromDatabase($table, $id);
     $_SESSION['message'] = 'Topic deleted successfully';
     $_SESSION['type'] = 'success';
     header('Location: ' . BASE_URL . '/admin/topics/index.php');

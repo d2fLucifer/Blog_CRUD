@@ -38,7 +38,7 @@ if (isset($_GET['delete_id'])) {
     adminOnly();
 
     $id = $_GET['delete_id'];
-    $result = delete($table, $id);
+    $result = deleteFromDatabase($table, $id);
 
     if ($result) {
         $_SESSION['message'] = "Post deleted successfully";
@@ -57,7 +57,6 @@ if (isset($_GET['published']) && isset($_GET['p_id'])) {
     $p_id = $_GET['p_id'];
 
     $count = update($table, $p_id, ['published' => $published]);
-// Include necessary files and initialize variables
 
     if ($published == 0) {
         $_SESSION['message'] = "Post published successfully";
@@ -129,8 +128,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        if (isset($_POST['update-post'])) {
-            adminOnly();
+        if (isset($_POST['update-post']) || isset($_POST['update-post-users'])) {
+            $check = isset($_POST['update-post-users']);
 
             $data['id'] = $_POST['id'];
             unset($_POST['update-post'], $_POST['id']);
@@ -140,8 +139,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($post_id) {
                 $_SESSION['message'] = "Post updated successfully";
                 $_SESSION['type'] = "success";
-                header("Location: " . BASE_URL . "/admin/posts/index.php");
-                exit();
+                if ($check) {
+                    header("Location: " . BASE_URL . "/single_post.php?id=" . $data['id']);
+                    exit();
+                } else {
+                    header("Location: " . BASE_URL . "/admin/posts/index.php");
+                    exit();
+                }
             } else {
                 $errors[] = "Failed to update the post.";
             }
