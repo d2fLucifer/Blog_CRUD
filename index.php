@@ -1,4 +1,6 @@
-  <?php
+<?php
+include_once __DIR__ . '/router.php';
+
   include_once "path.php";
   include_once ROOT_PATH . "/app/include/header.php";
   include_once ROOT_PATH . "/app/include/message.php";
